@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>King of Concrete — Driveways, Patios & Stamped Concrete | West Palm Beach, FL</title>
+<meta name="description" content="King of Concrete pours driveways, patios, sidewalks, curbing and stamped concrete across West Palm Beach and East Coast South Florida. Call anytime — we show up. (561) 410-6277. Licensed & insured, free quotes.">
+<!-- TODO(Cyrus): find/replace kingofconcretefl.com sitewide once the real domain is purchased -->
+<link rel="canonical" href="https://kingofconcretefl.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="King of Concrete — West Palm Beach Concrete Contractor">
+<meta property="og:description" content="Call anytime — we show up. Driveways, patios, sidewalks, curbing, stamped concrete, cutting, repair & leveling across East Coast South Florida. (561) 410-6277.">
+<meta property="og:url" content="https://kingofconcretefl.com/">
+<meta property="og:image" content="https://kingofconcretefl.com/assets/logo.png">
+<meta name="theme-color" content="#121212">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
+<link rel="preload" as="image" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script>
+/* Intro gate — must run before first paint. Plays once per session; never for reduced-motion. */
+(function(){
+  try{
+    if(sessionStorage.getItem('koc_intro') || matchMedia('(prefers-reduced-motion: reduce)').matches){
+      document.documentElement.classList.add('skip-intro');
+    }
+  }catch(e){ document.documentElement.classList.add('skip-intro'); }
+})();
+</script>
+<style>
+/* ============================================================
+   KING OF CONCRETE — design tokens
+   Orange sampled directly from the logo PNG (#FD5C01).
+   ============================================================ */
+:root{
+  --ink:#121212;
+  --ink-2:#0C0C0C;
+  --panel:#1B1B1B;
+  --concrete:#3A3A3A;
+  --orange:#FD5C01;
+  --orange-deep:#C74800;
+  --paper:#F5F1EA;
+  --steel:#8A8A8A;
+  --line:rgba(245,241,234,.11);
+  --display:'Anton',Impact,'Arial Narrow',sans-serif;
+  --body:'Barlow',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,'Courier New',monospace;
+  /* grain: inline SVG turbulence, no external image */
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  /* notched corners — echoes the angular cuts in the KING letterforms */
+  --notch:polygon(14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 14px);
+  --notch-sm:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--body);
+  font-size:1.0625rem;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+html:not(.skip-intro):not(.intro-done) body{overflow:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+::selection{background:var(--orange);color:var(--ink)}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:2px}
+
+.skip-link{
+  position:absolute;left:-999px;top:0;z-index:300;
+  background:var(--orange);color:var(--ink);font-family:var(--mono);
+  padding:.7rem 1.2rem;font-weight:600;
+}
+.skip-link:focus{left:0}
+
+.container{width:min(1180px,92%);margin-inline:auto}
+
+/* ------------------------------------------------------------
+   Crown crop — shows ONLY the crown region of the real logo PNG.
+   Image is 500×500; crown occupies x 136–363, y 58–177.
+   ------------------------------------------------------------ */
+.crown-crop{
+  aspect-ratio:227/119;
+  background-image:url("assets/logo.png");
+  background-repeat:no-repeat;
+  background-size:220.3% auto;
+  background-position:49.8% 15.2%;
+}
+
+/* ============================================================
+   OPENING ANIMATION — the real logo assembles from 4 slices
+   of the PNG itself (crown / KING / of / chevron banner).
+   ============================================================ */
+/* Paper background so the logo's black wordmark reads while it assembles;
+   the wipe then reveals the dark hero for contrast. */
+#loader{
+  position:fixed;inset:0;z-index:200;
+  background:var(--paper);
+  display:grid;place-items:center;
+}
+#loader::after{ /* grain over the whole overlay */
+  content:"";position:absolute;inset:0;background:var(--grain);opacity:.06;pointer-events:none;
+}
+.skip-intro #loader{display:none}
+.intro-done #loader{display:none}
+.loader-stage{
+  position:relative;
+  width:min(62vw,300px);
+  aspect-ratio:1;
+  animation:stage-settle .55s cubic-bezier(.2,.8,.3,1) 1s both;
+}
+.loader-stage::before{ /* one orange pulse behind the mark as it locks in */
+  content:"";position:absolute;inset:-34%;
+  background:radial-gradient(circle,rgba(253,92,1,.34),transparent 62%);
+  opacity:0;animation:glow-pulse .8s ease-out .85s both;
+}
+.piece{
+  position:absolute;inset:0;
+  background-image:url("assets/logo.png");
+  background-size:100% 100%;
+  background-repeat:no-repeat;
+  opacity:0;
+}
+/* slice boundaries measured from the PNG (gaps between art bands) */
+.piece-crown{clip-path:inset(0 0 63.2% 0);animation:from-top   .55s cubic-bezier(.18,.9,.28,1.18) .10s both}
+.piece-king {clip-path:inset(36.8% 0 46.5% 0);animation:from-left  .55s cubic-bezier(.18,.9,.28,1.18) .26s both}
+.piece-of   {clip-path:inset(53.5% 0 24.2% 0);animation:from-right .55s cubic-bezier(.18,.9,.28,1.18) .42s both}
+.piece-chev {clip-path:inset(75.8% 0 0 0);animation:from-bottom .5s cubic-bezier(.18,.9,.28,1.18) .56s both}
+@keyframes from-top   {from{opacity:0;transform:translateY(-46px)}to{opacity:1;transform:none}}
+@keyframes from-left  {from{opacity:0;transform:translateX(-54px)}to{opacity:1;transform:none}}
+@keyframes from-right {from{opacity:0;transform:translateX(54px)}to{opacity:1;transform:none}}
+@keyframes from-bottom{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+@keyframes glow-pulse {0%{opacity:0;transform:scale(.7)}35%{opacity:1}100%{opacity:0;transform:scale(1.15)}}
+@keyframes stage-settle{from{transform:scale(1.04)}to{transform:scale(1)}}
+#loader.wipe{animation:loader-wipe .5s cubic-bezier(.7,0,.3,1) both}
+@keyframes loader-wipe{to{clip-path:inset(0 0 100% 0)}}
+@media (prefers-reduced-motion: reduce){
+  #loader,.piece,.loader-stage,.loader-stage::before{animation:none!important}
+}
+
+/* ============================================================
+   CROWN SCROLL PROGRESS — the crown rides the progress bar
+   ============================================================ */
+#progress{
+  position:fixed;top:0;left:0;height:3px;width:0;
+  background:var(--orange);z-index:150;pointer-events:none;
+}
+#progress .crown-crop{
+  position:absolute;right:-2px;top:3px;width:26px;
+  filter:drop-shadow(0 1px 3px rgba(0,0,0,.6));
+  opacity:0;transition:opacity .3s;
+}
+#progress.moving .crown-crop{opacity:1}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  transition:background .35s,border-color .35s;
+  border-bottom:1px solid transparent;
+}
+.site-header.scrolled{
+  background:rgba(12,12,12,.88);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border-bottom-color:var(--line);
+}
+.header-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;height:68px;
+}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+/* paper chip keeps the logo's black wordmark legible on the dark header */
+.brand img{height:56px;width:auto;background:var(--paper);padding:5px 9px;clip-path:var(--notch-sm)}
+.main-nav{display:none}
+.main-nav a{
+  font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;
+  text-transform:uppercase;text-decoration:none;color:var(--paper);
+  padding:.5rem .85rem;transition:color .2s;
+}
+.main-nav a:hover{color:var(--orange)}
+.header-cta{display:flex;align-items:center;gap:.6rem}
+.btn-call-sm{
+  font-family:var(--mono);font-size:.8rem;font-weight:600;letter-spacing:.08em;
+  color:var(--ink);background:var(--orange);text-decoration:none;
+  padding:.62rem .95rem;clip-path:var(--notch);
+  transition:background .2s;white-space:nowrap;
+}
+.btn-call-sm:hover{background:var(--paper)}
+.burger{
+  display:inline-flex;flex-direction:column;justify-content:center;gap:5px;
+  width:44px;height:44px;padding:10px;background:none;border:1px solid var(--line);cursor:pointer;
+}
+.burger span{display:block;height:2px;background:var(--paper);transition:transform .25s,opacity .25s}
+.nav-open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-open .burger span:nth-child(2){opacity:0}
+.nav-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-nav{
+  position:fixed;inset:68px 0 auto 0;z-index:99;
+  background:rgba(12,12,12,.97);border-bottom:1px solid var(--line);
+  display:none;padding:1.4rem 4% 2rem;
+}
+.nav-open .mobile-nav{display:block}
+.mobile-nav a{
+  display:block;font-family:var(--display);font-size:2rem;line-height:1.35;
+  text-decoration:none;color:var(--paper);text-transform:uppercase;letter-spacing:.02em;
+}
+.mobile-nav a:hover{color:var(--orange)}
+@media (min-width:900px){
+  .main-nav{display:flex;gap:.2rem}
+  .burger,.mobile-nav{display:none}
+  .nav-open .mobile-nav{display:none}
+}
+
+/* ============================================================
+   CHEVRON DIVIDER — the logo's bottom banner as section geometry
+   ============================================================ */
+.chev{
+  height:clamp(26px,4.5vw,42px);
+  background:var(--orange);
+  clip-path:polygon(0 0,50% 52%,100% 0,100% 48%,50% 100%,0 48%);
+  margin-block:-1px;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative;min-height:100svh;
+  display:flex;align-items:center;
+  padding:110px 0 90px;
+  isolation:isolate;overflow:hidden;
+}
+.hero-media{position:absolute;inset:0;z-index:-3}
+.hero-media video{width:100%;height:100%;object-fit:cover}
+.hero.no-video .hero-media video{display:none}
+.hero-fallback{position:absolute;inset:0;z-index:-2;display:none}
+.hero.no-video .hero-fallback{display:block}
+/* Until real hero.mp4 footage lands, the fallback is a slow Ken-Burns pan
+   over a real job photo (crew finishing a driveway) under the scrim. */
+.hero-fallback::before{
+  content:"";position:absolute;inset:-6%;
+  background:
+    radial-gradient(52% 44% at 78% 18%,rgba(253,92,1,.2),transparent 68%),
+    linear-gradient(180deg,rgba(18,18,18,.4),rgba(18,18,18,.5)),
+    url("assets/gallery/driveway-crew.jpg") center 30%/cover no-repeat;
+  animation:slow-drift 26s ease-in-out infinite alternate;
+}
+@keyframes slow-drift{from{transform:translate3d(-1.6%,-1.2%,0) scale(1.02)}to{transform:translate3d(1.6%,1.2%,0) scale(1.07)}}
+.hero-scrim{
+  position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(12,12,12,.62),rgba(18,18,18,.55) 45%,var(--ink) 96%);
+}
+.hero-scrim::after{content:"";position:absolute;inset:0;background:var(--grain);opacity:.07}
+.hero-inner{position:relative;z-index:2;max-width:740px}
+.spec{
+  font-family:var(--mono);font-size:.74rem;letter-spacing:.18em;
+  color:var(--orange);text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:12px;margin-bottom:1.4rem;
+}
+.spec::before{
+  content:"";width:44px;height:9px;background:var(--orange);flex:none;
+  clip-path:polygon(0 0,82% 0,100% 50%,82% 100%,0 100%,18% 50%);
+}
+.hero h1{
+  font-family:var(--display);font-weight:400;
+  font-size:clamp(2.9rem,10.5vw,6.4rem);
+  line-height:.96;letter-spacing:.005em;text-transform:uppercase;
+  margin-bottom:1.3rem;
+}
+.hero h1 .pour{color:var(--orange)}
+.hero-sub{
+  font-size:clamp(1.02rem,2.1vw,1.2rem);color:#D9D4CB;
+  max-width:34em;margin-bottom:2rem;
+}
+.cta-row{display:flex;flex-wrap:wrap;gap:.9rem;align-items:center;margin-bottom:1.1rem}
+.btn-primary{
+  font-family:var(--display);font-size:clamp(1.15rem,2.4vw,1.45rem);
+  letter-spacing:.03em;text-transform:uppercase;text-decoration:none;
+  color:var(--ink);background:var(--orange);
+  padding:.95rem 1.7rem;clip-path:var(--notch);
+  transition:background .2s,transform .2s;
+}
+.btn-primary:hover{background:var(--paper);transform:translateY(-2px)}
+.btn-ghost{
+  font-family:var(--mono);font-size:.83rem;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;text-decoration:none;color:var(--paper);
+  border:1px solid rgba(245,241,234,.35);padding:1rem 1.5rem;clip-path:var(--notch);
+  transition:border-color .2s,color .2s;
+}
+.btn-ghost:hover{border-color:var(--orange);color:var(--orange)}
+.hero-note{font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;color:var(--steel);text-transform:uppercase}
+/* floating job-photo frames (desktop) — hidden until their photo exists */
+.frames{display:none}
+@media (min-width:900px){
+  .frames{display:block;position:absolute;inset:0;z-index:1;pointer-events:none}
+  .frame{
+    position:absolute;aspect-ratio:1;overflow:hidden;
+    border:1px solid rgba(245,241,234,.18);background:var(--panel);
+    box-shadow:10px 10px 0 rgba(253,92,1,.85);
+  }
+  .frame img{width:100%;height:100%;object-fit:cover}
+  .frame[hidden]{display:none}
+  .f1{top:14%;right:24%;width:200px;transform:rotate(-2deg)}
+  .f2{top:36%;right:5%;width:250px;transform:rotate(2.2deg)}
+  .f3{top:60%;right:29%;width:180px;transform:rotate(-1.4deg)}
+  .f4{top:72%;right:8%;width:215px;transform:rotate(1.6deg)}
+}
+.scroll-cue{
+  position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:2;
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.28em;color:var(--steel);
+  text-transform:uppercase;text-decoration:none;
+}
+.scroll-cue::after{
+  content:"";display:block;width:1px;height:34px;margin:.55rem auto 0;
+  background:linear-gradient(var(--orange),transparent);
+  animation:cue-drop 1.8s ease-in-out infinite;
+}
+@keyframes cue-drop{0%,100%{transform:scaleY(.4);transform-origin:top}50%{transform:scaleY(1)}}
+
+/* ============================================================
+   SECTIONS — shared header pattern with crown watermark
+   ============================================================ */
+.section{padding-block:clamp(70px,11vw,130px);position:relative}
+.sec-head{position:relative;margin-bottom:clamp(2.6rem,6vw,4.5rem)}
+.sec-head .crown-wm{
+  position:absolute;top:-18%;left:-2%;width:min(300px,52vw);
+  opacity:.055;pointer-events:none;
+  filter:grayscale(1) brightness(3);
+}
+.kicker{
+  font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;
+  color:var(--orange);text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:12px;margin-bottom:.8rem;
+}
+.kicker::before{
+  content:"";width:44px;height:9px;background:var(--orange);flex:none;
+  clip-path:polygon(0 0,82% 0,100% 50%,82% 100%,0 100%,18% 50%);
+}
+.sec-head h2{
+  font-family:var(--display);font-weight:400;text-transform:uppercase;
+  font-size:clamp(2.3rem,6.5vw,4.2rem);line-height:1;letter-spacing:.005em;
+  position:relative;
+}
+.sec-head p{color:var(--steel);max-width:44em;margin-top:.9rem}
+
+/* ============================================================
+   SERVICES
+   ============================================================ */
+.svc-list{display:grid;gap:0}
+.svc{
+  display:grid;gap:1.4rem;align-items:center;
+  padding-block:clamp(2.2rem,5vw,3.6rem);
+  border-top:1px solid var(--line);
+}
+.svc:last-child{border-bottom:1px solid var(--line)}
+.svc-media{
+  position:relative;aspect-ratio:4/3;overflow:hidden;
+  background:var(--panel);clip-path:var(--notch);
+}
+.svc-media::before{content:"";position:absolute;inset:0;background:var(--grain);opacity:.08}
+.svc-media .crown-crop{
+  position:absolute;left:50%;top:50%;width:42%;transform:translate(-50%,-50%);
+  opacity:.09;filter:grayscale(1) brightness(2.6);
+}
+.svc-media img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform .6s cubic-bezier(.16,.84,.3,1);
+}
+.svc:hover .svc-media img{transform:scale(1.04)}
+.svc-media img[hidden]{display:none}
+/* before/after pair (Repair & Leveling) — labels are baked into the photos */
+.svc-media--pair{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.svc-media--pair img{position:relative;inset:auto;height:100%}
+.svc h3{
+  font-family:var(--display);font-weight:400;text-transform:uppercase;
+  font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.02;margin-bottom:.7rem;
+}
+.svc p{color:#CFC9BF;max-width:36em}
+.svc-tag{
+  display:inline-flex;margin-top:1.1rem;
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;color:var(--steel);text-transform:uppercase;
+}
+@media (min-width:820px){
+  .svc{grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem)}
+  .svc:nth-child(even) .svc-media{order:2}
+}
+
+/* ============================================================
+   GALLERY — masonry via CSS columns, lightbox via <dialog>
+   ============================================================ */
+#work[hidden]{display:none}
+.masonry{columns:2;column-gap:14px}
+@media (min-width:900px){.masonry{columns:3}}
+.tile{
+  display:block;width:100%;margin-bottom:14px;break-inside:avoid;
+  border:1px solid var(--line);background:var(--panel);
+  padding:0;cursor:zoom-in;overflow:hidden;
+}
+.tile[hidden]{display:none}
+.tile img{width:100%;transition:transform .5s cubic-bezier(.16,.84,.3,1)}
+.tile:hover img{transform:scale(1.035)}
+#lightbox{
+  border:1px solid var(--line);background:var(--ink-2);padding:0;
+  max-width:min(92vw,1100px);max-height:92vh;
+}
+#lightbox::backdrop{background:rgba(0,0,0,.82)}
+#lightbox img{max-width:100%;max-height:86vh;display:block}
+.lb-close{
+  position:absolute;top:8px;right:8px;width:42px;height:42px;
+  background:var(--orange);color:var(--ink);border:none;cursor:pointer;
+  font-size:1.4rem;line-height:1;clip-path:var(--notch);
+}
+
+/* ============================================================
+   TRUST — badges & scores only
+   ============================================================ */
+.badges{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px}
+.badge{
+  position:relative;background:var(--panel);border:1px solid var(--line);
+  clip-path:var(--notch);padding:1.7rem 1.5rem 1.5rem;
+}
+.badge::before{content:"";position:absolute;inset:0;background:var(--grain);opacity:.06;pointer-events:none}
+.badge[hidden]{display:none}
+.badge .score{
+  font-family:var(--display);font-size:3.3rem;line-height:1;color:var(--orange);
+  display:block;margin-bottom:.45rem;
+}
+.badge .src{font-weight:600;letter-spacing:.01em}
+.badge .sub{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--steel);text-transform:uppercase;margin-top:.3rem}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:2.2rem}
+.chip{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--paper);border:1px solid rgba(253,92,1,.5);padding:.55rem .9rem;
+  clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);
+}
+
+/* ============================================================
+   QUOTE / CONTACT
+   ============================================================ */
+#quote{background:var(--ink-2);position:relative}
+#quote::before{content:"";position:absolute;inset:0;background:var(--grain);opacity:.05;pointer-events:none}
+.quote-grid{display:grid;gap:2.6rem;position:relative}
+@media (min-width:900px){.quote-grid{grid-template-columns:1.15fr .85fr;gap:4rem}}
+.field{margin-bottom:1.15rem}
+.field label{
+  display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--steel);margin-bottom:.45rem;
+}
+.field input,.field select,.field textarea{
+  width:100%;background:var(--panel);border:1px solid var(--line);
+  color:var(--paper);font-family:var(--body);font-size:1rem;
+  padding:.85rem 1rem;transition:border-color .2s;
+}
+.field input:hover,.field select:hover,.field textarea:hover{border-color:rgba(245,241,234,.3)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--orange);outline:none}
+.field textarea{min-height:120px;resize:vertical}
+.field select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--orange) 50%),linear-gradient(135deg,var(--orange) 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 14px) 50%;background-size:6px 6px;background-repeat:no-repeat}
+.field input[type=file]{padding:.65rem;font-family:var(--mono);font-size:.8rem;color:var(--steel)}
+.field input[type=file]::file-selector-button{
+  font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;border:1px solid var(--orange);
+  background:transparent;color:var(--orange);padding:.5rem .9rem;margin-right:.9rem;cursor:pointer;
+}
+.field input:focus,.field select:focus,.field textarea:focus{box-shadow:0 0 0 1px var(--orange),0 6px 22px -8px rgba(253,92,1,.35)}
+.file-count{display:none;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;color:var(--orange);text-transform:uppercase;margin-top:.45rem}
+.file-count.show{display:block}
+.btn-submit{
+  font-family:var(--display);font-size:1.2rem;letter-spacing:.03em;text-transform:uppercase;
+  background:var(--orange);color:var(--ink);border:none;cursor:pointer;
+  padding:1rem 2rem;clip-path:var(--notch);transition:background .2s,transform .1s;
+}
+.btn-submit:hover{background:var(--paper)}
+.btn-submit:active,.btn-primary:active,.btn-call-big:active{transform:scale(.97)}
+.form-note{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--steel);margin-top:.9rem;text-transform:uppercase}
+.form-sent{display:none;margin-top:1rem;border-left:3px solid var(--orange);padding:.7rem 1rem;background:var(--panel);font-size:.95rem}
+.form-sent.show{display:block}
+.call-panel{
+  align-self:start;position:relative;
+  background:var(--panel);border:1px solid var(--line);clip-path:var(--notch);
+  padding:clamp(1.8rem,4vw,2.6rem);
+}
+.call-panel .crown-crop{width:74px;margin-bottom:1.2rem}
+.call-panel h3{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:1.9rem;line-height:1.05;margin-bottom:.7rem}
+.call-panel p{color:#CFC9BF;margin-bottom:1.5rem}
+.btn-call-big{
+  display:block;text-align:center;text-decoration:none;
+  font-family:var(--display);font-size:clamp(1.4rem,4vw,1.85rem);letter-spacing:.02em;
+  background:var(--orange);color:var(--ink);padding:1.05rem 1rem;clip-path:var(--notch);
+  transition:background .2s,transform .2s;
+}
+.btn-call-big:hover{background:var(--paper);transform:translateY(-2px)}
+.call-panel .sub{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--steel);text-transform:uppercase;text-align:center;margin-top:.8rem}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer{background:var(--ink-2);border-top:1px solid var(--line);padding:3.2rem 0 2.4rem}
+.footer-grid{display:grid;gap:1.8rem;align-items:start}
+@media (min-width:760px){.footer-grid{grid-template-columns:auto 1fr auto;gap:3rem}}
+.site-footer img{height:96px;width:auto;background:var(--paper);padding:8px 12px;clip-path:var(--notch-sm)}
+.footer-call{font-family:var(--display);font-size:1.7rem;color:var(--paper);text-decoration:none;letter-spacing:.02em}
+.footer-call:hover{color:var(--orange)}
+.footer-tag{color:var(--orange);font-weight:600;margin-top:.15rem}
+.footer-area{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;color:var(--steel);text-transform:uppercase;margin-top:.7rem}
+.footer-legal{font-family:var(--mono);font-size:.72rem;color:var(--steel);letter-spacing:.06em;margin-top:2.4rem;padding-top:1.4rem;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:.5rem 1.6rem}
+
+/* ============================================================
+   SCROLL REVEALS
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,.84,.3,1);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .hero-fallback::before,.scroll-cue::after{animation:none}
+  .svc-media img,.tile img,.btn-primary,.btn-call-big{transition:none}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"GeneralContractor",
+  "name":"King of Concrete",
+  "legalName":"King of Concrete LLC",
+  "telephone":"+15614106277",
+  "url":"https://kingofconcretefl.com/",
+  "image":"https://kingofconcretefl.com/assets/logo.png",
+  "address":{"@type":"PostalAddress","addressLocality":"West Palm Beach","addressRegion":"FL","addressCountry":"US"},
+  "areaServed":["West Palm Beach FL","Palm Beach County FL","East Coast South Florida"],
+  "description":"Concrete contractor serving West Palm Beach and East Coast South Florida. Driveways, patios, sidewalks, curbing, stamped and decorative concrete, concrete cutting, repair and leveling. Licensed and insured. Free quotes. Call anytime — we show up.",
+  "knowsAbout":["Concrete driveways","Concrete patios","Sidewalks","Landscape curbing","Stamped concrete","Concrete cutting","Concrete repair and leveling"]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- Opening animation: the real logo assembles from slices of the PNG -->
+<div id="loader" aria-hidden="true">
+  <div class="loader-stage">
+    <div class="piece piece-crown"></div>
+    <div class="piece piece-king"></div>
+    <div class="piece piece-of"></div>
+    <div class="piece piece-chev"></div>
+  </div>
+</div>
+
+<!-- Crown scroll progress -->
+<div id="progress" aria-hidden="true"><span class="crown-crop"></span></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="container header-bar">
+    <a class="brand" href="#top" aria-label="King of Concrete — home">
+      <img src="assets/logo.png" alt="King of Concrete logo" width="500" height="500">
+    </a>
+    <nav class="main-nav" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#work" data-worklink hidden>Work</a>
+      <a href="#reviews">Ratings</a>
+      <a href="#quote">Free Quote</a>
+    </nav>
+    <div class="header-cta">
+      <a class="btn-call-sm" href="tel:+15614106277">(561) 410-6277</a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mobileNav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
+    <a href="#services">Services</a>
+    <a href="#work" data-worklink hidden>Work</a>
+    <a href="#reviews">Ratings</a>
+    <a href="#quote">Free Quote</a>
+    <a href="tel:+15614106277">Call (561) 410-6277</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <div class="hero-media" aria-hidden="true">
+      <!-- TODO(Cyrus): drop real job-site footage at assets/video/hero.mp4 -->
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="assets/video/hero.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-fallback" aria-hidden="true"></div>
+    <div class="hero-scrim" aria-hidden="true"></div>
+
+    <div class="frames" aria-hidden="true">
+      <div class="frame f1" data-speed="0.06"><img src="assets/gallery/driveway-modern-turf.jpg" alt=""></div>
+      <div class="frame f2" data-speed="0.11"><img src="assets/gallery/pour-mixer-truck.jpg" alt=""></div>
+      <div class="frame f3" data-speed="0.045"><img src="assets/gallery/stamped-patio.jpg" alt=""></div>
+      <div class="frame f4" data-speed="0.09"><img src="assets/gallery/pour-pump.jpg" alt=""></div>
+    </div>
+
+    <div class="container">
+      <div class="hero-inner">
+        <p class="spec">West Palm Beach · East Coast South Florida · Licensed &amp; Insured</p>
+        <h1>The crown<br>isn't given.<br><span class="pour">It's poured.</span></h1>
+        <p class="hero-sub">South Florida knows the story — you call a concrete guy and never hear back. We built our name on the opposite: call anytime, we answer, and we're on site when we said we'd be. Driveways, patios, and stamped concrete, finished clean.</p>
+        <div class="cta-row">
+          <a class="btn-primary" href="tel:+15614106277">Call (561) 410-6277</a>
+          <a class="btn-ghost" href="#quote">Get a free quote</a>
+        </div>
+        <p class="hero-note">Call anytime — we show up.</p>
+      </div>
+    </div>
+    <a class="scroll-cue" href="#services">The work</a>
+  </section>
+
+  <div class="chev" aria-hidden="true"></div>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="sec-head reveal">
+        <div class="crown-wm crown-crop" aria-hidden="true"></div>
+        <p class="kicker">What we pour</p>
+        <h2>Concrete, done like it's ours</h2>
+        <p>Residential and commercial. Every job formed, poured, and finished by a crew that picks up the phone — free quotes, credit cards accepted.</p>
+      </div>
+
+      <div class="svc-list">
+        <article class="svc reveal">
+          <div class="svc-media"><span class="crown-crop" aria-hidden="true"></span><img src="assets/gallery/driveway-crew.jpg" alt="King of Concrete crew in orange shirts troweling a fresh residential driveway pour"></div>
+          <div class="svc-body">
+            <h3>Driveways</h3>
+            <p>The first thing anyone sees at your place. We tear out the old slab, form it right, and pour a driveway that stays flat, drains properly, and stands up to South Florida sun and storm seasons.</p>
+            <span class="svc-tag">Tear-out · Forming · Pour · Finish</span>
+          </div>
+        </article>
+
+        <article class="svc reveal">
+          <div class="svc-media"><span class="crown-crop" aria-hidden="true"></span><img src="assets/gallery/patio-backyard.jpg" alt="Finished backyard concrete patio wrapping the corner of a house"></div>
+          <div class="svc-body">
+            <h3>Patios</h3>
+            <p>Outdoor space you can actually live on. Broom-finished, smooth, or stamped patios poured to the size and shape you want — ready for furniture, the grill, and bare feet.</p>
+            <span class="svc-tag">Broom · Smooth · Stamped finishes</span>
+          </div>
+        </article>
+
+        <article class="svc reveal">
+          <div class="svc-media"><span class="crown-crop" aria-hidden="true"></span><img src="assets/gallery/sidewalk-ada.jpg" alt="Freshly finished sidewalk section with orange ADA tactile ramp mat"></div>
+          <div class="svc-body">
+            <h3>Sidewalks</h3>
+            <p>Straight, level walkways that meet code and don't hold water. New pours, extensions, and full replacements for homes, HOAs, and storefronts.</p>
+            <span class="svc-tag">Residential · HOA · Commercial</span>
+          </div>
+        </article>
+
+        <article class="svc reveal">
+          <div class="svc-media"><span class="crown-crop" aria-hidden="true"></span><img src="assets/gallery/curbing-forms.jpg" alt="Wood forms set and graded for a concrete border pour"></div>
+          <div class="svc-body">
+            <h3>Curbing</h3>
+            <p>Continuous concrete landscape borders, shaped and colored on site. Keeps mulch in the beds, mowers off the flowers, and edges crisp year-round.</p>
+            <span class="svc-tag">Landscape borders · Poured on site</span>
+          </div>
+        </article>
+
+        <article class="svc reveal">
+          <div class="svc-media"><span class="crown-crop" aria-hidden="true"></span><img src="assets/gallery/stamped-walkway.jpg" alt="Stamped stone-pattern walkway with brick-stamped curb border"></div>
+          <div class="svc-body">
+            <h3>Stamped &amp; Decorative</h3>
+            <p>The look of stone, brick, or slate at a concrete price. Stamped patterns and integral color, sealed so the finish keeps its depth in the Florida sun.</p>
+            <span class="svc-tag">Stone · Brick · Slate patterns</span>
+          </div>
+        </article>
+
+        <article class="svc reveal">
+          <!-- No cutting photo yet — the designed crown panel stands in. TODO(Cyrus): add one when you have it. -->
+          <div class="svc-media"><span class="crown-crop" aria-hidden="true"></span></div>
+          <div class="svc-body">
+            <h3>Concrete Cutting</h3>
+            <p>Clean, controlled saw cuts for trenches, removals, and openings — the right blade for the job instead of a jackhammer mess and a cracked slab.</p>
+            <span class="svc-tag">Saw cutting · Trenching · Removals</span>
+          </div>
+        </article>
+
+        <article class="svc reveal">
+          <div class="svc-media svc-media--pair"><span class="crown-crop" aria-hidden="true"></span><img src="assets/gallery/repair-before.jpg" alt="Before King of Concrete: bare graded ground with forms set beside the house"><img src="assets/gallery/repair-after.jpg" alt="After King of Concrete: smooth finished concrete slab in the same spot"></div>
+          <div class="svc-body">
+            <h3>Repair &amp; Leveling</h3>
+            <p>Cracked, sunken, or flaking concrete doesn't always mean a full tear-out. We level, patch, and resurface so it's safe underfoot and looks right again.</p>
+            <span class="svc-tag">Leveling · Patching · Resurfacing</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY (hidden until photos exist) ============ -->
+  <section class="section" id="work" hidden>
+    <div class="container">
+      <div class="sec-head reveal">
+        <div class="crown-wm crown-crop" aria-hidden="true"></div>
+        <p class="kicker">Recent pours</p>
+        <h2>The proof is in the finish</h2>
+      </div>
+      <div class="masonry" id="masonry">
+        <!-- Real job photos. To add more, copy the pattern — tiles appear automatically once the file exists.
+             No location/job captions until Cyrus provides real per-photo info. -->
+        <button class="tile" hidden><img src="assets/gallery/driveway-crew.jpg" alt="King of Concrete crew in orange shirts finishing a fresh driveway pour" loading="lazy"></button>
+        <button class="tile" hidden><img src="assets/gallery/pour-mixer-truck.jpg" alt="Mixer truck pouring concrete at a residential job site" loading="lazy"></button>
+        <button class="tile" hidden><img src="assets/gallery/driveway-modern-turf.jpg" alt="Finished modern driveway with artificial turf ribbons, labeled After King of Concrete" loading="lazy"></button>
+        <button class="tile" hidden><img src="assets/gallery/patio-backyard.jpg" alt="Finished backyard concrete patio" loading="lazy"></button>
+        <button class="tile" hidden><img src="assets/gallery/stamped-walkway.jpg" alt="Stamped stone-pattern walkway with brick-stamped curbing" loading="lazy"></button>
+        <button class="tile" hidden><img src="assets/gallery/repair-before.jpg" alt="Before King of Concrete: bare graded ground with forms beside a house" loading="lazy"></button>
+        <button class="tile" hidden><img src="assets/gallery/repair-after.jpg" alt="After King of Concrete: finished concrete slab in the same spot" loading="lazy"></button>
+        <button class="tile" hidden><img src="assets/gallery/sidewalk-ada.jpg" alt="New sidewalk pour with orange ADA tactile mat" loading="lazy"></button>
+        <button class="tile" hidden><img src="assets/gallery/pour-pump.jpg" alt="Concrete pump hose filling formed sections" loading="lazy"></button>
+        <button class="tile" hidden><img src="assets/gallery/stamped-patio.jpg" alt="Freshly stamped paver-pattern patio" loading="lazy"></button>
+        <button class="tile" hidden><img src="assets/gallery/curbing-forms.jpg" alt="Forms and grading prepped for a concrete pour" loading="lazy"></button>
+      </div>
+    </div>
+  </section>
+
+  <dialog id="lightbox" aria-label="Enlarged job photo">
+    <button class="lb-close" id="lbClose" aria-label="Close">×</button>
+    <img alt="Concrete job photo, enlarged">
+  </dialog>
+
+  <!-- ============ TRUST ============ -->
+  <section class="section" id="reviews">
+    <div class="container">
+      <div class="sec-head reveal">
+        <div class="crown-wm crown-crop" aria-hidden="true"></div>
+        <p class="kicker">The record</p>
+        <h2>Rated where it counts</h2>
+      </div>
+      <div class="badges">
+        <div class="badge reveal" style="--d:.05s">
+          <span class="score">A</span>
+          <span class="src">BBB Rating</span>
+          <p class="sub">Better Business Bureau · SE Florida</p>
+        </div>
+        <div class="badge reveal" style="--d:.12s">
+          <span class="score">96%</span>
+          <span class="src">Recommend on Facebook</span>
+          <p class="sub">19 reviews</p>
+        </div>
+        <!-- TODO(Cyrus): confirm the real Google rating, fill it in, then delete the `hidden` attribute -->
+        <div class="badge" hidden>
+          <span class="score">[RATING]</span>
+          <span class="src">Google Reviews</span>
+          <p class="sub">Google Business Profile</p>
+        </div>
+        <!-- TODO(Cyrus): confirm the real Yelp rating, fill it in, then delete the `hidden` attribute -->
+        <div class="badge" hidden>
+          <span class="score">[RATING]</span>
+          <span class="src">Yelp</span>
+          <p class="sub">Yelp · West Palm Beach</p>
+        </div>
+      </div>
+      <div class="chips reveal" style="--d:.2s">
+        <span class="chip">Licensed &amp; Insured</span>
+        <span class="chip">Free Quotes</span>
+        <span class="chip">Credit Cards Accepted</span>
+        <span class="chip">Residential &amp; Commercial</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="chev" aria-hidden="true"></div>
+
+  <!-- ============ QUOTE / CONTACT ============ -->
+  <section class="section" id="quote">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="kicker">Free quote</p>
+        <h2>Tell us what you're pouring</h2>
+        <p>Send the basics and we'll get back to you fast — or skip the typing and call. Either way, you'll talk to the crew that does the work.</p>
+      </div>
+      <div class="quote-grid">
+        <form id="quoteForm" class="reveal" novalidate>
+          <div class="field">
+            <label for="qName">Name</label>
+            <input id="qName" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="qPhone">Phone</label>
+            <input id="qPhone" name="phone" type="tel" autocomplete="tel" required>
+          </div>
+          <div class="field">
+            <label for="qService">Service needed</label>
+            <select id="qService" name="service">
+              <option>Driveway</option>
+              <option>Patio</option>
+              <option>Sidewalk</option>
+              <option>Curbing</option>
+              <option>Stamped / Decorative Concrete</option>
+              <option>Concrete Cutting</option>
+              <option>Repair &amp; Leveling</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="qMsg">Brief message</label>
+            <textarea id="qMsg" name="message" placeholder="Rough size, timeline, anything we should know…"></textarea>
+          </div>
+          <div class="field">
+            <label for="qPhotos">Photos of the area (optional)</label>
+            <input id="qPhotos" name="photos" type="file" accept="image/*" multiple>
+            <p class="file-count" id="fileCount" role="status"></p>
+          </div>
+          <button class="btn-submit" type="submit">Send quote request</button>
+          <p class="form-note">Opens your email app with everything pre-filled — just hit send.</p>
+          <p class="form-sent" id="formSent" role="status">Your email app should have opened — press send and we'll take it from there. If nothing opened, call <a href="tel:+15614106277">(561) 410-6277</a>.</p>
+        </form>
+        <aside class="call-panel reveal" style="--d:.12s">
+          <span class="crown-crop" aria-hidden="true"></span>
+          <h3>Rather just talk?</h3>
+          <p>No office hours, no phone tag. The number rings the crew — call anytime and we'll get eyes on your job.</p>
+          <a class="btn-call-big" href="tel:+15614106277">(561) 410-6277</a>
+          <p class="sub">Call anytime — we show up.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="chev" aria-hidden="true"></div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <img src="assets/logo.png" alt="King of Concrete logo" width="500" height="500">
+      <div>
+        <a class="footer-call" href="tel:+15614106277">(561) 410-6277</a>
+        <p class="footer-tag">Call anytime — we show up.</p>
+        <p class="footer-area">Serving West Palm Beach &amp; East Coast South Florida</p>
+      </div>
+      <!-- Instagram intentionally omitted until the account/handle is live — add it here when ready -->
+    </div>
+    <div class="footer-legal">
+      <span id="copyright">© 2026 King of Concrete</span>
+      <span>Licensed &amp; Insured · Free Quotes</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+
+  /* ---------- Opening animation ---------- */
+  var loader = document.getElementById('loader');
+  function endIntro(){
+    root.classList.add('intro-done');
+    try{ sessionStorage.setItem('koc_intro','1'); }catch(e){}
+  }
+  if (root.classList.contains('skip-intro')){
+    endIntro();
+  } else {
+    // pieces converge (~1.1s) → settle+pulse → wipe up → done. Failsafe at 2.6s.
+    setTimeout(function(){ loader.classList.add('wipe'); }, 1450);
+    loader.addEventListener('animationend', function(e){
+      if (e.animationName === 'loader-wipe') endIntro();
+    });
+    setTimeout(endIntro, 2600);
+  }
+
+  /* ---------- Crown scroll progress + header state ---------- */
+  var progress = document.getElementById('progress');
+  var header = document.getElementById('siteHeader');
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      var doc = document.documentElement;
+      var max = doc.scrollHeight - innerHeight;
+      var pct = max > 0 ? (scrollY / max) * 100 : 0;
+      progress.style.width = pct + '%';
+      progress.classList.toggle('moving', pct > 1);
+      header.classList.toggle('scrolled', scrollY > 40);
+      if (!RM) parallax();
+      ticking = false;
+    });
+  }
+  addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* ---------- Hero frame parallax ---------- */
+  var frames = [].slice.call(document.querySelectorAll('.frame'));
+  function parallax(){
+    frames.forEach(function(f){
+      if (f.hidden) return;
+      var s = parseFloat(f.dataset.speed || 0);
+      f.style.translate = '0 ' + (-scrollY * s) + 'px';
+    });
+  }
+
+  /* ---------- Scroll reveals ---------- */
+  var revealEls = [].slice.call(document.querySelectorAll('.reveal'));
+  if (!RM && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* ---------- Mobile nav ---------- */
+  var burger = document.getElementById('burger');
+  burger.addEventListener('click', function(){
+    var open = document.body.classList.toggle('nav-open');
+    burger.setAttribute('aria-expanded', open);
+  });
+  document.querySelectorAll('.mobile-nav a').forEach(function(a){
+    a.addEventListener('click', function(){
+      document.body.classList.remove('nav-open');
+      burger.setAttribute('aria-expanded','false');
+    });
+  });
+
+  /* ---------- Robust image wiring (handles already-settled loads) ---------- */
+  function whenImg(img, ok, fail){
+    if (img.complete){
+      (img.naturalWidth > 0 ? ok : fail)(img);
+    } else {
+      img.addEventListener('load', function(){ ok(img); });
+      img.addEventListener('error', function(){ fail(img); });
+    }
+  }
+
+  /* hero frames: hide any frame whose photo is missing */
+  frames.forEach(function(f){
+    whenImg(f.querySelector('img'), function(){}, function(){ f.hidden = true; });
+  });
+
+  /* hero video: fall back to textured gradient if footage missing */
+  var hero = document.querySelector('.hero');
+  var video = hero.querySelector('video');
+  function noVideo(){ hero.classList.add('no-video'); }
+  video.addEventListener('error', noVideo, true);
+  video.querySelector('source').addEventListener('error', noVideo);
+  setTimeout(function(){ if (video.readyState === 0) noVideo(); }, 4000);
+
+  /* service photos: hide broken img, leaving the designed textured panel */
+  document.querySelectorAll('.svc-media img').forEach(function(img){
+    whenImg(img, function(){}, function(){ img.hidden = true; });
+  });
+
+  /* gallery: tiles + section + nav links appear only when photos exist */
+  var workSec = document.getElementById('work');
+  var workLinks = [].slice.call(document.querySelectorAll('[data-worklink]'));
+  document.querySelectorAll('#masonry .tile').forEach(function(tile){
+    whenImg(tile.querySelector('img'), function(){
+      tile.hidden = false;
+      workSec.hidden = false;
+      workLinks.forEach(function(l){ l.hidden = false; });
+    }, function(){});
+  });
+
+  /* ---------- Lightbox ---------- */
+  var lb = document.getElementById('lightbox');
+  var lbImg = lb.querySelector('img');
+  document.getElementById('masonry').addEventListener('click', function(e){
+    var tile = e.target.closest('.tile');
+    if (!tile || tile.hidden) return;
+    var src = tile.querySelector('img');
+    lbImg.src = src.src;
+    lbImg.alt = src.alt;
+    lb.showModal();
+  });
+  document.getElementById('lbClose').addEventListener('click', function(){ lb.close(); });
+  lb.addEventListener('click', function(e){ if (e.target === lb) lb.close(); });
+
+  /* photo picker feedback — mailto can't attach files, so surface the count clearly */
+  var photoInput = document.getElementById('qPhotos');
+  var fileCount = document.getElementById('fileCount');
+  photoInput.addEventListener('change', function(){
+    var n = photoInput.files.length;
+    fileCount.textContent = n ? n + ' photo' + (n>1?'s':'') + ' selected — attach in your email app' : '';
+    fileCount.classList.toggle('show', n > 0);
+  });
+
+  /* ---------- Quote form → mailto ---------- */
+  /* TODO(Cyrus): change the destination inbox here if you don't want quotes at this address */
+  var QUOTE_EMAIL = 'thecyrusperez@gmail.com';
+  var form = document.getElementById('quoteForm');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('qName').value.trim();
+    var phone = document.getElementById('qPhone').value.trim();
+    if (!name || !phone){
+      (!name ? document.getElementById('qName') : document.getElementById('qPhone')).focus();
+      return;
+    }
+    var service = document.getElementById('qService').value;
+    var msg = document.getElementById('qMsg').value.trim();
+    var nPhotos = document.getElementById('qPhotos').files.length;
+    var body = 'Name: ' + name +
+      '\nPhone: ' + phone +
+      '\nService: ' + service +
+      (msg ? '\n\nDetails:\n' + msg : '') +
+      (nPhotos ? '\n\n(' + nPhotos + ' photo' + (nPhotos>1?'s':'') + ' selected on the site — please attach them to this email before sending.)' : '') +
+      '\n\n— sent from the King of Concrete website';
+    var subject = 'Quote request — ' + service + ' — ' + name;
+    location.href = 'mailto:' + QUOTE_EMAIL +
+      '?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(body);
+    document.getElementById('formSent').classList.add('show');
+  });
+
+  /* ---------- Footer year ---------- */
+  document.getElementById('copyright').textContent = '© ' + new Date().getFullYear() + ' King of Concrete';
+})();
+</script>
+</body>
+</html>
