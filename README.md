@@ -4,17 +4,16 @@ Single-file production site for **King of Concrete LLC** — West Palm Beach, FL
 
 ## What's already live in the file
 
-- Real logo (`assets/logo.png`) used everywhere — including the opening animation, which assembles the actual PNG from four slices (crown / KING / of / chevron), the crown scroll-progress indicator, and section watermarks (all CSS crops of the same file, no redrawn artwork).
-- **11 real job photos** in `assets/gallery/` wired into the hero frames, service blocks (Repair & Leveling shows the before/after pair), and the masonry gallery with descriptive alt text.
-- Phone (561) 410-6277 wired as `tel:` links throughout.
-- Confirmed ratings only: **BBB "A"** and **Facebook 96% recommend (19 reviews)**.
-- Quote form opens the visitor's email app pre-filled (no backend needed).
+- 3D textured logo (`assets/logo.png`, transparency restored from the flattened original) used everywhere — the opening animation assembles the actual PNG from four slices (crown / KING / of / chevron), holds the finished mark ~3s, then wipes to the hero; the crown scroll-progress indicator and section watermarks are CSS crops of the same file.
+- Hero background video (`assets/video/hero.mp4`) blurred to silhouettes; if a browser can't play it, a Ken-Burns pan over the crew photo takes over automatically.
+- **11 real job photos** in `assets/gallery/` wired into the service blocks (Repair & Leveling shows the before/after pair) and the masonry gallery (below Contact) with descriptive alt text.
+- Animated growth chart beside the real **Facebook 96% recommend (19 reviews)** stat; **BBB "A"** badge. Confirmed ratings only.
+- Phone (561) 410-6277 wired as `tel:` links throughout; quote form opens the visitor's email app pre-filled (no backend needed).
 
 ## Adding more assets (the site adapts automatically)
 
 | Path | What | Current behavior |
 |---|---|---|
-| `assets/video/hero.mp4` | Real job-site footage for the hero background | Until it exists: slow Ken-Burns pan over the driveway-crew photo |
 | A concrete-cutting photo | The one service with no photo yet — add the `<img>` in its block (marked `TODO(Cyrus)`) | Designed crown-watermark panel shows |
 | More gallery photos | Copy any `<button class="tile">` line in the masonry section and point it at the new file | Tiles appear automatically once the file exists |
 
@@ -26,7 +25,7 @@ Any mix of portrait/landscape works in the gallery — the masonry layout uses n
 2. **Quote inbox** — form currently mails `thecyrusperez@gmail.com`; change `QUOTE_EMAIL` in the script at the bottom of `index.html` if you want a different inbox.
 3. **Google & Yelp ratings** — two badge cards ship `hidden` with `[RATING]` placeholders. Fill in the real verified numbers, then delete the `hidden` attribute. Don't guess.
 4. **Instagram** — footer has a marked spot; add the link when the account is live.
-5. **Hero footage** — drop `assets/video/hero.mp4` when you have real job-site video.
+5. **Hero footage** — current clip is AI-generated; swap in real job-site video at `assets/video/hero.mp4` whenever you have it (same filename, nothing else to change).
 
 ## Magic MCP (21st-dev)
 
