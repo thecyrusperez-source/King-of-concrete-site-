@@ -528,10 +528,12 @@ a{color:inherit}
 .footer-grid{display:grid;gap:1.8rem;align-items:start}
 @media (min-width:760px){.footer-grid{grid-template-columns:auto 1fr auto;gap:3rem}}
 .site-footer img{height:96px;width:auto;background:var(--paper);padding:8px 12px;clip-path:var(--notch-sm)}
-.footer-call{font-family:var(--display);font-size:1.7rem;color:var(--paper);text-decoration:none;letter-spacing:.02em}
+.footer-call{font-family:var(--display);font-size:2rem;color:var(--paper);text-decoration:none;letter-spacing:.02em}
 .footer-call:hover{color:var(--orange)}
 .footer-tag{color:var(--orange);font-weight:600;margin-top:.15rem}
-.footer-area{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;color:var(--steel);text-transform:uppercase;margin-top:.7rem}
+.footer-mail{display:inline-block;font-family:var(--mono);font-size:.9rem;letter-spacing:.06em;color:var(--paper);text-decoration:underline;text-underline-offset:3px;margin-top:.5rem}
+.footer-mail:hover{color:var(--orange)}
+.footer-area{font-family:var(--mono);font-size:.8rem;letter-spacing:.14em;color:var(--steel);text-transform:uppercase;margin-top:.7rem}
 .footer-legal{font-family:var(--mono);font-size:.72rem;color:var(--steel);letter-spacing:.06em;margin-top:2.4rem;padding-top:1.4rem;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:.5rem 1.6rem}
 
 /* ============================================================
@@ -854,7 +856,7 @@ a{color:inherit}
           </div>
           <button class="btn-submit" type="submit">Text us your quote request</button>
           <p class="form-note">Opens your texting app with the message ready — just hit send.</p>
-          <button class="alt-mail" type="button" id="altMail">On a computer? Send it by email instead</button>
+          <button class="alt-mail" type="button" id="altMail">Or email us directly — qlynum@yahoo.com</button>
           <p class="form-sent" id="formSent" role="status">Your messaging app should have opened — press send and we'll get right back to you. If nothing opened, call or text <a href="tel:+15614106277">(561) 410-6277</a>.</p>
         </form>
         <aside class="call-panel reveal" style="--d:.12s">
@@ -925,6 +927,7 @@ a{color:inherit}
       <div>
         <a class="footer-call" href="tel:+15614106277">(561) 410-6277</a>
         <p class="footer-tag">Call anytime — we show up.</p>
+        <a class="footer-mail" href="mailto:qlynum@yahoo.com">qlynum@yahoo.com</a>
         <p class="footer-area">Serving West Palm Beach &amp; East Coast South Florida</p>
       </div>
       <!-- Instagram intentionally omitted until the account/handle is live — add it here when ready -->
@@ -1138,6 +1141,12 @@ a{color:inherit}
     markSent();
   });
   document.getElementById('altMail').addEventListener('click', function(){
+    var hasBasics = document.getElementById('qName').value.trim() && document.getElementById('qPhone').value.trim();
+    if (!hasBasics){
+      /* nothing filled in — just open a blank email to the business */
+      location.href = 'mailto:' + QUOTE_EMAIL;
+      return;
+    }
     var body = quoteBody();
     if (body == null) return;
     location.href = 'mailto:' + QUOTE_EMAIL +
